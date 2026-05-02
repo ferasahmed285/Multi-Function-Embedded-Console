@@ -2,7 +2,7 @@
 #include <stdbool.h>
 #include <string.h>
 #include "uart.h"
-#include "GPTM.h"
+#include "gptm.h"
 #include "adc.h"
 
 /* ==========================================================================
