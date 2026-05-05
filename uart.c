@@ -33,14 +33,13 @@ void UART0_Init(void)
 
     UART0_CTL_R &= ~0x01;
 
-    /* REVERTED TO 16 MHz CONFIG (9600 Baud) */
     UART0_IBRD_R = 104;
     UART0_FBRD_R = 11;
 
-    UART0_LCRH_R = 0x60; // 8-bit, FIFO Disabled
+    UART0_LCRH_R = 0x60; 
     UART0_CC_R = 0x0;
 
-    UART0_IM_R |= 0x10;  // Enable RX Interrupt
+    UART0_IM_R |= 0x10;  
     NVIC_EN0_R |= (1 << 5);
 
     UART0_CTL_R = 0x301;
