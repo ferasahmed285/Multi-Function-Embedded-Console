@@ -5,4 +5,4 @@ void UART0_Init(void);
 void UART0_WriteChar(char c);
 void UART0_WriteString(const char *str);
 
-#endif /* UART_H_ */
+#endif 

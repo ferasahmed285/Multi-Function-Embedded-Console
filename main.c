@@ -91,10 +91,8 @@ int main(void)
 {
     int i;
     
-    /* 1. Turn on the Floating Point Unit (FPU) */
     CPACR_R |= 0x00F00000;
 
-    /* 2. Initialize All Hardware */
     UART0_Init();
     LEDs_Init();
     Timer1A_Init();
@@ -106,13 +104,10 @@ int main(void)
        the read-only adc.c file is suppressed. We will poll the ADC instead. */
     NVIC_DIS0_R = (1 << 17); 
     
-    /* 3. Turn on the Master Interrupt Switch */
     __asm("cpsie i");
 
-    /* 4. Display Initial Menu */
     PrintMenu();
 
-    /* 5. Main Application Loop */
     while(1)
     {
         if (current_mode == MODE_CALC)
@@ -519,7 +514,6 @@ static void LEDs_Init(void) {
     delay = SYSCTL_RCGCGPIO_R;     
     (void)delay;
 
-    /* Initialize PF1 (Red) and PF2 (Blue) */
     GPIO_PORTF_DIR_R |= 0x06;      
     GPIO_PORTF_DEN_R |= 0x06;      
     GPIO_PORTF_DATA_R &= ~0x06;    
@@ -541,18 +535,18 @@ static void DelayMs(uint32_t ms) {
 
 static void Blink_Error_LED(void) {
     for(int i = 0; i < 3; i++) {
-        GPIO_PORTF_DATA_R |= 0x02;  // Red LED On
+        GPIO_PORTF_DATA_R |= 0x02;  
         DelayMs(500);               
-        GPIO_PORTF_DATA_R &= ~0x02; // Red LED Off
+        GPIO_PORTF_DATA_R &= ~0x02; 
         DelayMs(500);               
     }
 }
 
 static void Blink_Timer_LED(void) {
     for(int i = 0; i < 3; i++) {
-        GPIO_PORTF_DATA_R |= 0x04;  // Blue LED On
+        GPIO_PORTF_DATA_R |= 0x04;  
         DelayMs(500);               
-        GPIO_PORTF_DATA_R &= ~0x04; // Blue LED Off
+        GPIO_PORTF_DATA_R &= ~0x04; 
         DelayMs(500);               
     }
 }

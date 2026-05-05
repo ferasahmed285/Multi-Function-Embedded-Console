@@ -75,7 +75,7 @@ void ADC0_EnableTimerTrigger(void)
 
     NVIC_EN0_R |= (1 << 19);
 
-    /* START TIMER & ENABLE ADC TRIGGER OUTPUT (CRITICAL FIX) */
+    
     TIMER0_CTL_R |= (1 << 5) | 1;
 
     /* THEN CONFIGURE ADC TRIGGER */
@@ -133,7 +133,7 @@ void ADC0SS3_Handler(void)
     }
 }
 
-/* TIMER ISR (required even if empty) */
+/* TIMER ISR */
 void TIMER0A_Handler(void)
 {
     TIMER0_ICR_R = 1;
